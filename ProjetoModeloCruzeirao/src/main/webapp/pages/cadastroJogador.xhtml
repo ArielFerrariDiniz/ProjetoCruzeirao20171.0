@@ -1,0 +1,70 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroJogador.title']}" />
+	</ui:define>
+
+
+	<ui:define name="principal">
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroJogador.menu']}" />
+		</h1>
+
+		<h:form id="formJogador">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroJogador.matricula']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.matricula}" />
+				<p:outputLabel value="#{msg['pages.cadastroJogador.nome']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.nome}" />
+				<p:outputLabel value="#{msg['pages.cadastroJogador.email']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.email}" />
+				<p:outputLabel value="#{msg['pages.cadastroJogador.senha']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.senha}" />
+				<p:outputLabel value="#{msg['pages.cadastroJogador.rg']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.rg}" />
+				<p:outputLabel value="#{msg['pages.cadastroJogador.cpf']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.cpf}" />
+				<p:outputLabel
+					value="#{msg['pages.cadastroJogador.dataNascimento']}" />
+				<p:inputText value="#{jogadorManagedBean.jogador.dataNascimento}" />
+			</p:panelGrid>
+			<p:commandButton value="#{msg['pages.cadastroJogador.btnSalvar']}"
+				action="#{jogadorManagedBean.salvar}"
+				update=":formJogador, :tabelaJogador" />
+		</h:form>
+
+		<p:dataTable value="#{jogadorManagedBean.jogadores}" var="aux"
+			id="tabelaJogador">
+			<p:column headerText="#{msg['pages.cadastroJogador.matricula']}">
+				<p:outputLabel value="#{aux.matricula}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroJogador.nome']}">
+				<p:outputLabel value="#{aux.nome}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroJogador.email']}">
+				<p:outputLabel value="#{aux.email}" />
+			</p:column>
+
+			<p:column headerText="#{msg['pages.cadastroJogador.rg']}">
+				<p:outputLabel value="#{aux.rg}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroJogador.cpf']}">
+				<p:outputLabel value="#{aux.cpf}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroJogador.dataNascimento']}">
+				<p:outputLabel value="#{aux.dataNascimento}" />
+
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>

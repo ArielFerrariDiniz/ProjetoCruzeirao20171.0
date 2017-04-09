@@ -1,0 +1,44 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroUsuario.title']}" />
+	</ui:define>
+
+
+	<ui:define name="principal">
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroUsuario.menu']}" />
+		</h1>
+
+		<h:form id="formCadastro">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.nome']}" />
+				<p:inputText value="#{usuarioManagedBean.usuario.nome}" />
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.email']}" />
+				<p:inputText value="#{usuarioManagedBean.usuario.email}" />
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.senha']}" />
+				<p:inputText value="#{usuarioManagedBean.usuario.senha}" />
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.rg']}" />
+				<p:inputText value="#{usuarioManagedBean.usuario.rg}" />
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.cpf']}" />
+				<p:inputText value="#{usuarioManagedBean.usuario.cpf}" />
+				<p:outputLabel value="#{msg['pages.cadastroUsuario.dataNascimento']}" />
+				<p:inputText value="#{usuarioManagedBean.usuario.dataNascimento}" />
+			</p:panelGrid>
+			<p:commandButton value="#{msg['pages.cadastroUsuario.btnSalvar']}"
+				action="#{usuarioManagedBean.salvar}" />
+			<p:commandButton value="#{msg['pages.cadastroUsuario.btnVoltar']}"
+				action="#{usuarioManagedBean.voltar}"/>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

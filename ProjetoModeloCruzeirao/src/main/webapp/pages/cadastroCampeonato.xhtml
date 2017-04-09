@@ -1,0 +1,121 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroCampeonato.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+
+		<h1>
+			<p:outputLabel value="#{msg['pages.cadastroCampeonato.menu']}" />
+		</h1>
+
+		<h:form id="formCampeonato">
+			<p:panelGrid columns="2">
+			
+				<h:outputText value="#{msg['pages.cadastroCampeonato.inscricao']}" />
+        		<p:selectBooleanButton id="inscricao" value="#{campeonatoManagedBean.campeonato.inscricao}"
+        			onLabel="ON" offLabel="OFF" onIcon="" offIcon="" 
+        			style="width:80px">
+        		</p:selectBooleanButton>
+				
+				<p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']}" />
+				<p:inputText value="#{campeonatoManagedBean.campeonato.nomeCampeonato}" />
+				<p:outputLabel value="#{msg['pages.cadastroCampeonato.ano']}" />
+				<p:inputText value="#{campeonatoManagedBean.campeonato.anoCampeonato}" />
+				<p:outputLabel value="#{msg['pages.cadastroCampeonato.inicio']}" />
+				<p:inputText value="#{campeonatoManagedBean.campeonato.dataInicioCampeonato}" />
+				<p:outputLabel value="#{msg['pages.cadastroCampeonato.fim']}" />
+				<p:inputText value="#{campeonatoManagedBean.campeonato.dataFimCampeonato}" />
+				<p:outputLabel value="#{msg['pages.cadastroCampeonato.periodoInicio']}" />
+				<p:inputText value="#{campeonatoManagedBean.campeonato.periodoInicioInscricao}" />
+				<p:outputLabel value="#{msg['pages.cadastroCampeonato.periodoFim']}" />
+				<p:inputText value="#{campeonatoManagedBean.campeonato.periodoFimInscricao}" />
+			</p:panelGrid>
+
+			<p:commandButton value="#{msg['pages.cadastroCampeonato.btnSalvar']}"
+				action="#{campeonatoManagedBean.salvar}"
+				update=":formCampeonato, :formTabelaCampeonato" />
+		</h:form>
+		
+		<br/>
+	
+		<h:form id="formTabelaCampeonato">
+			<p:dataTable value="#{campeonatoManagedBean.campeonatos}" var="aux"
+				id="tabelaCampeonato" > 
+		
+				<p:column headerText="#{msg['pages.cadastroCampeonato.codigo']}">
+					<p:outputLabel value="#{aux.codigoCampeonato}" />
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
+					<p:outputLabel value="#{aux.nomeCampeonato}" />
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCampeonato.descricao']}">
+					<p:commandLink  action="#{campeonatoManagedBean.descricaoCampeonato(aux)}" value="Descricao / Description"> </p:commandLink>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroCampeonato.categorias']}">
+					<p:commandLink  action="#{campeonatoManagedBean.inserirCategorias(aux)}" value="Inserir Categoria / Insert Category " update=":formTabelaCampeonato"> </p:commandLink>
+				</p:column>
+				<p:column headerText="#{msg['pages.cadastroCampeonato.inscricao']}">
+					<p:selectBooleanButton value="#{aux.inscricao}" action="#{campeonatoManagedBean.mostrarInscricao(aux)}"
+	        			onLabel="ON" offLabel="OFF" onIcon="" offIcon="" 
+	        			style="width:80px">
+	        		</p:selectBooleanButton>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroCampeonato.opcoes']}">
+					<p:commandLink  action="#{campeonatoManagedBean.editarCampeonato(aux)}" value="Editar / Edit " update=":formTabelaCampeonato"> </p:commandLink>
+			    	<p:commandLink  action="#{campeonatoManagedBean.removerCampeonato(aux)}" value="Excluir / Delete" update=":formTabelaCampeonato"> </p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+		<br/>
+		<br/>
+		<br/>
+		
+		<p:dataTable value="#{campeonatoManagedBean.campeonatos}" var="aux"
+			id="tabelaCategoria">
+			
+			<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
+				<p:outputLabel value="#{aux.nomeCampeonato}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCampeonato.ano']}">
+				<p:outputLabel value="#{aux.anoCampeonato}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCampeonato.inicio']}">
+				<p:outputLabel value="#{aux.dataInicioCampeonato}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCampeonato.fim']}">
+				<p:outputLabel value="#{aux.dataFimCampeonato}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCampeonato.periodoInicio']}">
+				<p:outputLabel value="#{aux.periodoInicioInscricao}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCampeonato.periodoFim']}">
+				<p:outputLabel value="#{aux.periodoFimInscricao}" />
+			</p:column>
+			<p:column headerText="#{msg['pages.cadastroCampeonato.inscricao']}">
+				<p:selectBooleanButton id="inscricao" value="#{campeonatoManagedBean.campeonato.inscricao}" 
+        			onLabel="ON" offLabel="OFF" onIcon="" offIcon="" 
+        			style="width:80px">
+        		</p:selectBooleanButton>
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
